@@ -1,0 +1,252 @@
+<p-card>
+  <div
+    class="text-center"
+    *ngIf="dataList?.length === 0 && input.search === ''"
+  >
+    <p>
+      <!-- {{ "There’s No Added Templates Yet!, Hit " }}
+      <a>{{ "Add Templates" }} </a>
+      {{ "and start filling Templates mandatory data" }} -->
+      {{ "There’s No Data Found ! " }}
+    </p>
+  </div>
+
+  <div *ngIf="dataList?.length !== 0">
+    <p-table
+      (onLazyLoad)="onLazyLoad($event)"
+      [columns]="columns"
+      [value]="dataList"
+      [lazy]="true"
+      styleClass=" p-datatable-sm"
+      sortMode="single"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr class="bg-secondary-200">
+          <th
+            *ngFor="let col of columns"
+            [pSortableColumn]="col.field"
+            [ngStyle]="{ 'max-width': col.width }"
+          >
+            {{ col.header }}
+            <ng-container *ngIf="col.sortable">
+              <i class="fa fa-sort" style="margin-left: 4px"></i>
+            </ng-container>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td
+            *ngFor="let col of columns"
+            [ngStyle]="{ 'max-width': col.width }"
+          >
+            <div [ngSwitch]="col.type">
+              <span *ngSwitchCase="Columntypelst.image">
+                <img
+                  *ngIf="rowData[col.field] !== null"
+                  [src]="rowData[col.field]"
+                  width="30px"
+                />
+              </span>
+
+              <span
+                *ngSwitchCase="Columntypelst.String"
+                class="truncate"
+                [pTooltip]="rowData[col.field]"
+              >
+                {{
+                  rowData[col.field] == null
+                    ? "-"
+                    : rowData[col.field].length > 20
+                    ? rowData[col.field]?.slice(0, 20) + "..."
+                    : rowData[col.field]
+                }}
+              </span>
+              <span
+                *ngSwitchCase="Columntypelst.isFamilyMember"
+                class="truncate"
+                [pTooltip]="rowData[col.field]"
+              >
+                {{ rowData[col.field] == null ? "false" : "true" }}
+              </span>
+              <span
+                *ngSwitchCase="Columntypelst.StringList"
+                [pTooltip]="rowData[col.field]"
+                class="truncate"
+              >
+                <span
+                  *ngIf="
+                    rowData[col.field] != null &&
+                    rowData[col.field]?.split(',')?.length > 0
+                  "
+                >
+                  {{ rowData[col.field]?.split(',')?.[0] }}</span
+                >
+                <a
+                  href=""
+                  class="mx-1"
+                  *ngIf="rowData[col.field]?.split(',')?.length > 1"
+                  >({{ rowData[col.field]?.split(",")?.length - 1 }}) more
+                </a>
+              </span>
+
+              <span
+                *ngSwitchCase="Columntypelst.list"
+                [pTooltip]="rowData"
+                class="truncate"
+              >
+                {{ rowData }}
+              </span>
+              <span *ngSwitchCase="Columntypelst.statusNumber">
+                <p-tag
+                  [ngClass]=""
+                  *ngIf="rowData[col.field]"
+                  [severity]="getStatusSeverity(rowData[col.value])"
+                >
+                  {{ rowData[col.field] }}
+                </p-tag>
+              </span>
+              <span *ngSwitchCase="Columntypelst.statusNumberWithAction">
+                <p-tag
+                  [ngClass]=""
+                  *ngIf="rowData[col.field]"
+                  [severity]="getStatusSeverity(rowData[col.value])"
+                >
+                  {{ rowData[col.field] }}
+                </p-tag>
+                <i
+                  *ngIf="rowData?.statusId !== 3"
+                  class="pi pi-pencil"
+                  style="margin-inline-start: 10px"
+                  [pTooltip]="'Change Status'"
+                  (click)="
+                    toggleActionStatus(popupMenuActions, $event, rowData)
+                  "
+                >
+                </i>
+              </span>
+
+              <span *ngSwitchCase="Columntypelst.progress">
+                <p-progressBar
+                  [value]="rowData[col.field]"
+                  [showValue]="false"
+                ></p-progressBar>
+              </span>
+              <span *ngSwitchCase="Columntypelst.date">
+                <span
+                  class="full-text"
+                  [pTooltip]="rowData[col.field] | date : 'dd-MMM-yyyy'"
+                  >{{
+                    rowData[col.field] == null
+                      ? "-"
+                      : (rowData[col.field] | date : "dd-MMM-yyyy")
+                  }}
+                </span>
+              </span>
+              <span *ngSwitchCase="Columntypelst.time">
+                <span
+                  class="full-text"
+                  [pTooltip]="rowData[col.field] | date : 'h:mm a'"
+                  >{{ rowData[col.field] | date : "h:mm a" }}
+                </span>
+              </span>
+              <span *ngSwitchCase="Columntypelst.dateTime">
+                <span
+                  class="full-text"
+                  [pTooltip]="rowData[col.field] | date : 'dd-MMM-yyyy h:mm a'"
+                  >{{ rowData[col.field] | date : "dd-MMM-yyyy h:mm a" }}
+                </span>
+              </span>
+
+              <span
+                *ngSwitchCase="Columntypelst.address"
+                class="truncate"
+              >
+                {{
+                  rowData.address == null
+                    ? "-"
+                    : rowData.address.city +
+                      " " +
+                      rowData.address.suite +
+                      " " +
+                      rowData.address.street +
+                      " " +
+                      rowData.address.zipcode
+                }}
+              </span>
+              <span *ngSwitchCase="Columntypelst.booleanIcon">
+                <i
+                  class="pi"
+                  [ngClass]="{
+                    'text-green-500 pi-check-circle': rowData[col.field],
+                    'text-red-500 pi-times-circle': !rowData[col.field]
+                  }"
+                ></i>
+              </span>
+
+              <div
+                *ngSwitchCase="Columntypelst.ActionIcon"
+                class="action-col c-pointer"
+                tooltipPosition="left"
+                [pTooltip]="col?.tooltip"
+                (click)="openAction($event, rowData)"
+              >
+                <img
+                  width="30"
+                  height="30"
+                  [src]="'../../../..' + col?.actionIcon"
+                  alt=""
+                />
+              </div>
+              <div
+                *ngSwitchCase="Columntypelst.ActionMenu"
+                class="action-col c-pointer"
+                (click)="toggleMenu(popupMenu, $event, rowData)"
+              >
+                <ng-container>
+                  <i class="fa fa-ellipsis-v c-pointer"></i>
+                </ng-container>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <p-paginator
+      *ngIf="exceededLimitNumber !== 0"
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [rows]="rows"
+      [totalRecords]="exceededLimitNumber"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    ></p-paginator>
+  </div>
+</p-card>
+
+<p-menu #popupMenu appendTo="body" [popup]="true" [model]="Menuitems">
+  <ng-template pTemplate="item" let-item>
+    <a
+      class="p-menuitem-link flex justify-content-between align-items-center"
+      [class]="item.styleClass"
+    >
+      <div>
+        <span [class]="item.icon"></span>
+        <span> {{ item.label }}</span>
+      </div>
+    </a>
+  </ng-template>
+</p-menu>
+<p-menu #popupMenuActions appendTo="body" [popup]="true" [model]="MenuActions">
+  <ng-template pTemplate="item" let-item>
+    <a
+      class="p-menuitem-link flex justify-content-between align-items-center"
+      [class]="item.styleClass"
+    >
+      <div>
+        <span [class]="item.icon"></span>
+        <span> {{ item.label }}</span>
+      </div>
+    </a>
+  </ng-template>
+</p-menu>

@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="products-container">
+      <div *ngFor="let product of products" class="product-card" [class.low-stock]="highlightLowStock(product)">
+        <p-card [style]="{ width: '360px' }">
+          <ng-template pTemplate="header">
+            <img [src]="product.ProductImg" alt="{{product.ProductName}}">
+          </ng-template>
+          <h3>{{product.ProductName}}</h3>
+          <p>Price: {{product.ProductPrice}}</p>
+          <p>Available: {{product.AvailablePieces}}</p>
+          <ng-template pTemplate="footer">
+            <div class="flex gap-3 mt-1">
+              <button pButton label="Edit Quantity" icon="pi pi-pencil" (click)="showEditDialog(product)"></button>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  
+    <p-dialog header="Edit Quantity" [(visible)]="displayEditDialog">
+      <p>
+        <label for="newQuantity">New Quantity:</label>
+        <input id="newQuantity" type="number" [(ngModel)]="newQuantity" pInputText>
+      </p>
+      <p-footer>
+        <button type="button" pButton label="Save" icon="pi pi-check" (click)="editProductQuantity(selectedProduct.ProductId, newQuantity);displayEditDialog = false"></button>
+        <button type="button" pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="displayEditDialog = false"></button>
+      </p-footer>
+    </p-dialog>
+  </div>
+  

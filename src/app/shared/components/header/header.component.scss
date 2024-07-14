@@ -1,0 +1,27 @@
+
+[dir="ltr"] .flags{
+    left: -62px;
+
+}
+
+[dir="rtl"] .flags{
+    left: 0;
+
+}
+
+.labels{
+    p{
+        cursor: pointer;
+    }
+}
+nav {
+    display: flex;
+    gap: 16px;
+    background: #f0f0f0;
+    padding: 8px;
+    a{
+        color: #DDD;
+        text-decoration: none;
+    }
+  }
+  

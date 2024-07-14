@@ -1,0 +1,22 @@
+.delete{
+    color: red !important;
+}
+.defualt{
+    color: rgb(0, 0, 0) !important;
+
+}
+
+::ng-deep.p-datatable .p-datatable-tbody > tr > td {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: start;
+    span.truncate {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+  }

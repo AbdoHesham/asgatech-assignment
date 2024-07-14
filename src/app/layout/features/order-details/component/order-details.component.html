@@ -1,0 +1,16 @@
+<div class="order-details-container" *ngIf="order && customer">
+    <h2>Order #{{order.OrderId}}</h2>
+    <p>Date: {{order.OrderDate}}</p>
+    <h3>Customer Details</h3>
+    <p>Name: {{customer.Name}}</p>
+    <p>Email: {{customer.Email}}</p>
+    <p>Phone: {{customer.Phone}}</p>
+    <p>Address: {{customer.Address}}</p>
+    <h3>Products</h3>
+    <ul>
+      <li *ngFor="let product of order.Products">
+        {{product.ProductName}} - Quantity: {{product.Quantity}}
+      </li>
+    </ul>
+  </div>
+  

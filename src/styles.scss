@@ -1,0 +1,307 @@
+/* You can add global styles to this file, and also import other style files */
+//@import './assets/bootstrapCustomTheme/bootstrap-theme.scss';
+//@import "./bootstrapCustomTheme/custom-palettes.scss";
+@import "primeicons/primeicons.css";
+@import "./custom-theme";
+@import "./assets/scss/shared.scss";
+
+@import "../node_modules/primeicons/primeicons.css";
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "light": $basic-white,
+);
+body {
+  padding: 0;
+  margin: 0;
+}
+.navbar {
+  // background-color: map-get($secondary, 500) !important;
+  color: map-get($primary, 100) !important;
+  background-color: map-get($primary, 600) !important;
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(25px);
+
+  .navbar-brand {
+    color: map-get($primary, 100) !important;
+    margin: auto;
+
+    img {
+      width: 210.605px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+  }
+  i {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bolder;
+  }
+}
+.main-bg {
+  background-color: map-get($primary, 600) !important;
+}
+/**********************Inputs************************************/
+
+.custom-label {
+  color: #6c757d;
+
+  font-size: 14px;
+}
+
+p-inputnumber {
+  width: 100%;
+
+  .p-inputtext {
+    width: 100% !important;
+  }
+}
+.p-dropdown,
+.p-multiselect,
+.p-inputnumber,
+input.p-inputtext:not(.inputgroup-input) {
+  height: 35px !important;
+  text-align: start;
+  width: 100%;
+  //max-width: 95%;
+
+  //width: 90%;
+  .p-dropdown-label.p-placeholder,
+  .p-multiselect-label {
+    padding-top: 6px;
+  }
+  .p-inputtext {
+    padding-top: 6px;
+    //height: 35px;
+  }
+}
+.p-calendar {
+  height: 35px;
+  width: 100%;
+}
+.p-inputgroup {
+  .p-button {
+    height: 35px !important;
+  }
+}
+.p-dropdown-panel .p-dropdown-items,
+.p-menu-list,
+.p-multiselect-panel .p-multiselect-items {
+  padding: 0.15rem 0 !important;
+  margin-bottom: 0;
+}
+
+.p-menu-list a.p-menuitem-link {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+.p-inputgroup,
+.p-inputgroup.file-group {
+  height: 35px;
+  max-width: 100%;
+}
+.p-inputgroup-addon {
+  cursor: pointer;
+}
+.p-inputgroup-addon img {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+.p-float-label > label {
+  left: 0.5rem;
+}
+
+.p-inputtext.ng-touched.ng-invalid,
+p-dropdown.ng-touched.ng-invalid > .p-dropdown,
+p-multiselect.ng-touched.ng-invalid > .p-multiselect,
+p-calendar.ng-touched.ng-invalid > .p-calendar .p-inputtext,
+p-cascadeselect.ng-touched.ng-invalid > .p-cascadeselect,
+p-dropdown.ng-touched.ng-invalid > .p-inputtext,
+.p-inputtext.ng-touched.ng-invalid,
+p-inputnumber.ng-touched.ng-invalid .p-inputnumber .p-inputtext,
+.mobilecode .p-inputtext.ng-touched.ng-invalid {
+  border-color: #f44435 !important;
+}
+/*******************************************buttons**************************/
+.btn-primary {
+  background-color: map-get($primary, 500) !important;
+  border-color: map-get($primary, 500) !important;
+}
+
+/*****************************radio button*************************/
+// .p-radiobutton .p-radiobutton-box.p-highlight,
+// .p-checkbox .p-checkbox-box.p-highlight {
+//   background-color: map-get($primary, 500) !important;
+//   border-color: map-get($primary, 500) !important;
+// }
+
+// .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus,
+// .p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box.p-focus {
+//   box-shadow: 0 0 0 0.2rem map-get($primary, 300) !important;
+// }
+
+// .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover,
+// .p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box:hover {
+//   border-color: map-get($primary, 500) !important;
+// }
+p-checkbox + label {
+  margin-left: 10px;
+  color: map-get($secondary, 500);
+}
+[dir="rtl"] p-checkbox + label {
+  margin-right: 10px;
+  margin-left: unset;
+}
+.p-checkbox .p-checkbox-box {
+  border-color: map-get($primary, 500) !important;
+}
+.p-checkbox .p-checkbox-box.p-highlight {
+  background-color: map-get($primary, 500) !important;
+  border-color: map-get($primary, 500) !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus,
+.p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box.p-focus {
+  box-shadow: 0 0 0 0.2rem map-get($primary, 300) !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover,
+.p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box:hover,
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box,
+.p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box {
+  border-color: map-get($primary, 500) !important;
+}
+.answer-box.heighlight {
+  border: 2px solid map-get($primary, 500) !important; /* Adjust the border style as desired */
+}
+
+//  p galeria
+.p-galleria-indicator button {
+  border-radius: 50%;
+}
+.p-galleria .p-galleria-indicators .p-galleria-indicator button {
+  background-color: #fff;
+}
+.p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {
+  background-color: #f5eee6;
+}
+
+ul.p-galleria-indicators {
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+}
+
+.p-galleria-item-container > div {
+  background-color: rgba(30, 47, 43, 0.8) !important;
+  // background-color: rgba(0, 0,0,.8) !important;
+}
+.padding-inline-end-2 {
+  padding-inline-end: 2rem !important;
+  padding-inline-start: 0 !important;
+}
+
+.p-button {
+  // width: 100%;
+  //display: flex;
+  //justify-content: center;
+  border-radius: 10px;
+}
+.p-selectbutton .p-button.p-highlight {
+  background: map-get($primary, 500);
+  border: map-get($primary, 500);
+}
+.p-sidebar.p-sidebar-active {
+  background-color: map-get($primary, 600) !important;
+
+  .p-sidebar-content {
+    div {
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+  .active {
+    background-color: map-get($primary, 300);
+    font-weight: bold;
+  }
+}
+.required {
+  color: red !important;
+} /*************************************************************/
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    background-color: map-get($primary, 600);
+    color: map-get($primary, 100);
+  }
+}
+
+/*******************************scroll***/
+
+.p-scrollpanel-bar {
+  background: map-get($primary, 200);
+
+  opacity: 1;
+  &:focus-visible {
+    border-color: red;
+  }
+}
+
+/*****************************tabs************/
+.p-steps .p-steps-item .p-menuitem-link {
+  text-decoration: none !important;
+}
+
+// ******************* dialog footer ********************************
+.p-dialog-footer {
+  display: flex;
+  //justify-content: space-around;
+  justify-content: end;
+}
+
+// ***************** input ********************************
+p-inputnumber,
+.p-inputnumber {
+  width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.dialog-footer {
+  position: fixed;
+  bottom: 25px;
+  left: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+/******************************************confirm dialog*****************/
+.p-dialog .p-dialog-footer button {
+  margin: 0 10px !important;
+}
+
+/******************************print******************/
+
+@media print {
+  .collapsed {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+.basic-white {
+  color: $basic-white;
+}
+.p-togglebutton.p-button.p-highlight {
+  background: #324034;
+  border-color: #324034;
+}

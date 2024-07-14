@@ -1,0 +1,10 @@
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .order-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+  }
+  

@@ -1,0 +1,10 @@
+<div class="orders-container">
+    <div *ngFor="let order of orders" class="order-card">
+      <h3>Order #{{order.OrderId}}</h3>
+      <p>Date: {{order.OrderDate}}</p>
+      <p>Total: {{calculateTotal(order)}}</p>
+      <p>Payment: {{order.PaymentType}}</p>
+      <a [routerLink]="['/order-details', order.OrderId]">View Details</a>
+    </div>
+  </div>
+  

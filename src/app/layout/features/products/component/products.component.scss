@@ -1,0 +1,14 @@
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    text-align: center;
+    &.low-stock {
+      border-color: red;
+    }
+  }
+  

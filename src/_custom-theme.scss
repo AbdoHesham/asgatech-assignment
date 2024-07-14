@@ -1,0 +1,15 @@
+// Import functions, variables, and mixins needed by other Bootstrap files
+// @import '../node_modules/bootstrap/scss/functions';
+// @import '../node_modules/bootstrap/scss/variables';
+@import './assets/bootstrapCustomTheme/custom-palettes.scss';
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  // "success":    $success,
+  // "info":       $info,
+  // "warning":    $warning,
+  // "danger":     $danger,
+  "light":      $basic-white,
+  // "dark":       $dark
+);

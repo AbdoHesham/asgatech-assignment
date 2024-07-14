@@ -1,0 +1,12 @@
+
+<div [dir]="DirService.dir() == 'ar' ? 'rtl' :'ltr'">
+
+    <app-header></app-header>
+    <router-outlet *ngIf="networkService.online" ></router-outlet>
+</div>
+<app-connection-lost *ngIf="!networkService.online"></app-connection-lost>
+<p-confirmDialog [style]="{ width: '50vw' }" appendTo="body" class="confirm-d"></p-confirmDialog>
+
+<app-spinner></app-spinner>
+
+<p-toast></p-toast>

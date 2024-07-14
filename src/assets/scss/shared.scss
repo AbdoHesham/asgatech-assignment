@@ -1,0 +1,95 @@
+.p-40 {
+  padding: 40px !important;
+}
+.label-color-primary {
+  color: map-get($primary, 400);
+}
+// .text-primary-500{
+//     color: map-get($primary, 500);;
+// }
+$count: 200;
+
+@while $count <= 500 {
+  .text-primary-#{$count} {
+    color: map-get($primary, $count);
+  }
+  $count: $count + 100;
+}
+
+@while $count <= 500 {
+  .bg-primary-#{$count} {
+    background-color: map-get($primary, $count);
+  }
+  $count: $count + 100;
+}
+@while $count <= 500 {
+  .text-secondary-#{$count} {
+    color: map-get($secondary, $count);
+  }
+  $count: $count + 100;
+}
+@while $count <= 500 {
+  .bg-secondary-#{$count} {
+    background-color: map-get($secondary, $count);
+  }
+  $count: $count + 100;
+}
+$opacity: 0;
+@while $opacity <=1 {
+  .custom-opacity-#{$opacity *10} {
+    opacity: $opacity;
+  }
+  $opacity: $opacity + 0.1;
+}
+
+input:focus,
+input:hover {
+  border-color: map-get($primary, 400);
+  box-shadow: none;
+}
+.text-decoration-inherit {
+  text-decoration: inherit;
+}
+// .border-color-primary{
+//     border-color: rgb(228 231 230);
+// }
+
+.bg-primary-500 {
+  background-color: map-get($primary, 500);
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.text-secondary-400 {
+  color: rgb(90 122 128/1);
+}
+
+.c-pointer {
+  cursor: pointer !important;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+.defualt {
+  color: rgb(0, 0, 0) !important;
+}
+
+.bg-grey {
+  // background-color: grey;
+}
+// .p-sidebar .p-sidebar-header {
+//   display: none;
+// }
+a {
+  text-decoration: none !important;
+  .p-tabview-title {
+    color: black;
+  }
+}
+.p-avatar {
+  img{
+    width: 56px !important;
+    // height: 30px !important;
+  }
+}
